@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            xmlns:viewmodels ="clr-namespace:QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels"
+            xmlns:models ="clr-namespace:QuanLyDaiLy.Models"
+            CanBeDismissedByTappingOutsideOfPopup="False"
+            x:Class="QuanLyDaiLy.Views.ThemDaiLyView"
+            x:DataType="viewmodels:ThemDaiLyViewModel"
+            Size="900,500"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="Transparent"
+    >
+    <Border
+        BackgroundColor="White"
+        HeightRequest="500"
+        HorizontalOptions="Center"
+        Stroke="LightGray"
+        StrokeThickness="2"
+        VerticalOptions="Center"
+        WidthRequest="900"
+        >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="11" />
+        </Border.StrokeShape>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="331" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row="1" Color="LightGray" />
+            <BoxView Grid.Row="3" Color="LightGray" />
+            <!--HEADER-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Margin="20,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding Title}"
+                    VerticalOptions="Center" />
+
+                <Button
+                    Grid.Column="1"
+                    Margin="0,0,20,0"
+                    BackgroundColor="Red"
+                    Command="{Binding XButtonCommand}"
+                    FontSize="16"
+                    HeightRequest="40"
+                    Text="✕"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+            </Grid>
+            <!-- Content-->
+            <ScrollView Grid.Row="2" >
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        Margin="0,10"
+                        ColumnSpacing="15"
+                        RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--ROW 1: MaDaiLy, TenDaiLy, TenLoaiDaiLy, Quan, -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Mã đại lý" FontAttributes="Bold"></Label>
+                            <Entry
+                                Background="DarkGray"
+                                IsReadOnly="True"
+                                Text="{Binding MaDaiLy}"
+                                ></Entry>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Tên đại lý" FontAttributes="Bold"></Label>
+                            <Entry
+                                Background="LightGray"
+                                Text="{Binding TenDaiLy}"
+                                TextColor="Black"
+                                ></Entry>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2" Spacing="5">
+                            <Label Text="Tên loại đại lý" FontAttributes="Bold"></Label>
+                            <Picker
+                                TextColor="Black"
+                                Background="LightGray"
+                                ItemsSource="{Binding LoaiDailies}"
+                                ItemDisplayBinding="{Binding TenLoaiDaiLy}"
+                                SelectedItem="{Binding SelectedLoaiDaiLy}"
+                                >
+                                <!--SelectedLoaiDaiLy-->
+
+                            </Picker>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="3" Spacing="5" >
+                            <Label Text="Tên quận" FontAttributes="Bold"></Label>
+                            <Picker
+                                TextColor="Black"
+                                Background="LightGray"
+                                ItemsSource="{Binding Quans}"
+                                ItemDisplayBinding="{Binding TenQuan}"
+                                SelectedItem="{Binding SelectedQuan}"
+                                >
+                                <!--SelectedQuan-->
+                            </Picker>
+                        </VerticalStackLayout>
+
+
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Margin="0,10"
+                        ColumnSpacing="15"
+                        RowSpacing="10"
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Số điện thoại" FontAttributes="Bold"></Label>
+                            <Entry
+                                Background="LightGray"
+                                Text="{Binding SoDienThoai}"
+                                TextColor="Black"
+                                ></Entry>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Email" FontAttributes="Bold"></Label>
+                            <Entry
+                                Background="LightGray"
+                                Text="{Binding Email}"
+                                TextColor="Black"
+                                ></Entry>
+                        </VerticalStackLayout>
+                        
+                        
+
+                        <VerticalStackLayout Grid.Column="3" HorizontalOptions="Start" Spacing="5">
+                            <Label Text="Số lượng đại lý hiện có trong Quận" FontAttributes="Bold" ></Label>
+                            <Entry
+                                BackgroundColor="DarkGray"
+                                IsReadOnly="True"
+                                Text="{Binding SoLuongDaiLyHienCo}"
+                                >
+                            </Entry>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid
+                        Grid.Row="2"
+                        Margin="0,10"
+                        ColumnSpacing="15"
+                        RowSpacing="10"
+                                >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Địa chỉ" FontAttributes="Bold"></Label>
+                            <Entry
+                                Background="LightGray"
+                                Text="{Binding DiaChi}"
+                                TextColor="Black"
+                                ></Entry>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2" Spacing="5" HorizontalOptions="Center">
+                            <Label Text="Ngày tiếp nhận" FontAttributes="Bold"></Label>
+                            <DatePicker
+                                Date="{Binding NgayTiepNhan}"
+                                HorizontalOptions="Fill"
+                                BackgroundColor="LightGray" 
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                Format="dd/MM/yyyy"
+                                WidthRequest="200"
+                                >
+                            </DatePicker>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+            <!--FOOTER-->
+            <HorizontalStackLayout
+                Grid.Row="4"
+                HorizontalOptions="Center"
+                Spacing="15"
+                VerticalOptions="Center">
+                <Button
+                    BackgroundColor="Green"
+                    Text="➕ Tiếp nhận đại lý"
+                    TextColor="White"
+                    Command="{Binding AddButtonCommand}"
+                    WidthRequest="200" />
+                <Button
+                    BackgroundColor="DarkBlue"
+                    Text="🔄 Đại lý mới"
+                    TextColor="White"
+                    Command="{Binding RefreshButtonCommand}"
+                    WidthRequest="200" />
+
+                <Button
+                    BackgroundColor="Red"
+                    Text="🚪 Thoát"
+                    TextColor="White"
+                    Command="{Binding CloseButtonCommand}"
+                    WidthRequest="200" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Border>
+    
+</toolkit:Popup>
