@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using QuanLyDaiLy.Helper;
 using QuanLyDaiLy.Models;
 
 namespace QuanLyDaiLy.Data;
@@ -55,5 +56,6 @@ public partial class DataContext : DbContext
             .WithOne(dvt => dvt.DonViTinh)
             .HasForeignKey(dvt => dvt.MaDonViTinh)
             .OnDelete(DeleteBehavior.Cascade);
+        DatabaseSeeder.SeedData(modelBuilder);
     }
 }

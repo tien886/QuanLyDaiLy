@@ -8,6 +8,7 @@ using QuanLyDaiLy.Utils;
 using QuanLyDaiLy.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels;
 
@@ -48,7 +49,9 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
             if(mainpage != null)
             {
                 await mainpage.ShowPopupAsync(newpopup);
+                IsLoading = true;
                 await LoadDataAsync();
+                IsLoading = false;
             }
         }
         catch (Exception ex)
@@ -61,9 +64,15 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
     public async Task LoadButton()
     {
         IsLoading = true;
+        await Task.Yield();
         try
         {
-            _ = LoadDataAsync();
+            
+            await Task.Run(async () =>
+            {
+                var loadList = await _daiLyService.GetAllDaiLyAsync();
+                DsDaiLy = new ObservableCollection<DaiLy>(loadList);
+            });
         }
         catch (Exception ex)
         {
@@ -71,19 +80,20 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
         }   
         finally
         {
-            if (IsLoading)
-                Debug.WriteLine("Loading Data");
-            else
-                Debug.WriteLine("Loading Data Failed");
+            Debug.WriteLine("Loading stop");
+
             IsLoading = false;
+            await Task.Yield();
         }
         Debug.WriteLine("LoadDataButton on");
     }
 
     private async Task LoadDataAsync()
     {
+        //await Task.Delay(3000);
         var loadList = await _daiLyService.GetAllDaiLyAsync();
         DsDaiLy = new ObservableCollection<DaiLy>(loadList);
+        Debug.WriteLine("Load data Succesfully");
     }
 
 }

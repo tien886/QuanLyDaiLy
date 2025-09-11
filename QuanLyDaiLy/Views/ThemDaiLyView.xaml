@@ -84,7 +84,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <!--ROW 1: MaDaiLy, TenDaiLy, TenLoaiDaiLy, Quan, -->
+                        <!--ROW 1: MaDaiLy, Ten, TenLoaiDaiLy, Quan, -->
                         <VerticalStackLayout Grid.Column="0" Spacing="5">
                             <Label Text="Mã đại lý" FontAttributes="Bold"></Label>
                             <Entry
@@ -98,7 +98,7 @@
                             <Label Text="Tên đại lý" FontAttributes="Bold"></Label>
                             <Entry
                                 Background="LightGray"
-                                Text="{Binding TenDaiLy}"
+                                Text="{Binding Ten}"
                                 TextColor="Black"
                                 ></Entry>
                         </VerticalStackLayout>

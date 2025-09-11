@@ -44,7 +44,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
     [ObservableProperty]
     private int maDaiLy;
     [ObservableProperty]
-    private string tenDaiLy = string.Empty;
+    private string ten = string.Empty;
     [ObservableProperty]
     private LoaiDaiLy? selectedLoaiDaiLy;
     [ObservableProperty]
@@ -97,7 +97,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
                 var newDaiLy = new DaiLy
                 {
                     MaDaiLy = MaDaiLy,
-                    Ten = TenDaiLy,
+                    Ten = ten,
                     Email = Email,
                     SoDienThoai = SoDienThoai,
                     DiaChi = DiaChi,
@@ -229,7 +229,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
 
     public async Task Refresh()
     {
-        TenDaiLy = string.Empty;
+        Ten = string.Empty;
         SoDienThoai = string.Empty;
         Email = string.Empty;
         DiaChi = string.Empty;
@@ -241,7 +241,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
 
     public async Task<bool> CheckValidDealer()
     {
-        if (string.IsNullOrWhiteSpace(TenDaiLy))
+        if (string.IsNullOrWhiteSpace(Ten))
         {
             await AlertUtil.ShowAlert("Enter Dealer Name");
             return false;

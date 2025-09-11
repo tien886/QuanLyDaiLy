@@ -8,10 +8,10 @@ namespace QuanLyDaiLy.ViewModels
         [ObservableProperty]
         protected string title = string.Empty;
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(isNotLoading))]
+        [NotifyPropertyChangedFor(nameof(IsNotLoading))]
         private bool isLoading = false;
 
-        public bool isNotLoading => !isLoading;
+        public bool IsNotLoading => !IsLoading;
 
     }
 }

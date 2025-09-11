@@ -3,12 +3,12 @@ using QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels;
 
 namespace QuanLyDaiLy.Views;
 
-public partial class ThemDaiLyView : Popup
-{
-	public ThemDaiLyView(ThemDaiLyViewModel vm)
+	public partial class ThemDaiLyView : Popup
 	{
-		InitializeComponent();
-		BindingContext = vm;
-		vm.SetPopupReference(this);
+		public ThemDaiLyView(ThemDaiLyViewModel vm)
+		{
+			InitializeComponent();
+			BindingContext = vm;
+			vm.SetPopupReference(this);
+		}
 	}
-}
