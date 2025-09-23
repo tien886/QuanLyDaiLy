@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:QuanLyDaiLy.ViewModels.DanhSachPhieuXuatViewModels"
+             x:Class="QuanLyDaiLy.Views.DanhSachPhieuXuat.DanhSachPhieuXuatView"
+             x:DataType="viewmodels:DanhSachPhieuXuatViewModel"
+             xmlns:models="clr-namespace:QuanLyDaiLy.Models"
+             >
+    <VerticalStackLayout Spacing="10" Margin="50" >
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" FontSize="Title" Text="Danh sách Phiếu xuất hàng" HorizontalOptions="Start"/>
+            <Button Grid.Column="1"  Text ="Thoát" Command="{Binding ExitButtonCommand}" Background="Red" HorizontalOptions="End" ></Button>
+        </Grid>
+        <Grid Margin="10,0" >
+            <HorizontalStackLayout 
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Spacing="10">
+                <Button
+                    Text="Thêm Phiếu xuất"
+                    Command="{Binding AddButtonCommand}"
+                    WidthRequest="137" />
+                <Button
+                    Text="Tìm Phiếu xuất"
+                    WidthRequest="137" />
+                <Button
+                    Text="Xóa Phiếu Xuất"
+                    WidthRequest="137" />
+                <Button
+                    Text="Cập nhật Phiếu xuất"
+                    WidthRequest="150" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!--  Table Headers  -->
+        <Grid
+            Padding="5"
+            BackgroundColor="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <HorizontalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="MontserratBold"
+                    Text="STT"
+                    VerticalOptions="Start" />
+                
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="MontserratBold"
+                    Text="NGÀY LẬP"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="MontserratBold"
+                    Text="TÊN ĐẠI LÝ"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="3" HorizontalOptions="Center">
+                <Label
+                
+                    FontAttributes="Bold"
+                    FontFamily="MontserratBold"
+                    Text="TỔNG GIÁ TRỊ"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+        </Grid>
+    
+        <!--  Table Data  -->
+        <Border>
+            <ScrollView HeightRequest="450">
+                <CollectionView ItemsSource="{Binding DsPhieuXuat}" IsVisible="{Binding IsNotLoading}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:PhieuXuat" >
+                            <Border Stroke="LightGray" StrokeThickness="1">
+                                <Grid ColumnDefinitions="50,*,*,*" Padding="5" Margin="10" >
+                                    <Label Text="{Binding MaPhieuXuat}" Grid.Column="0" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding NgayLap, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding DaiLy.Ten}" Grid.Column="2" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding TongGiaTri, StringFormat='{0:N0}'}" Grid.Column="3" HorizontalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Border>
+       
+        <ActivityIndicator  Grid.Row="1"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsLoading}"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="Center"
+                    WidthRequest="50"
+                    Color="Blue" />
+
+        <Grid>
+            <Grid Grid.Row="3" ColumnDefinitions="*, auto">
+                <Border Grid.Column="1" StrokeThickness="0">
+                    <HorizontalStackLayout Spacing="20">
+                        <Border Padding="2" StrokeShape="RoundRectangle 10">
+                            <HorizontalStackLayout Spacing="15" >
+                                <Button Command="{Binding PreviousPageButtonCommand}" BackgroundColor="White" Text="Trang trước" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border StrokeShape="RoundRectangle 10">
+                            <HorizontalStackLayout>
+                                <Border StrokeThickness="0" BackgroundColor="#0eaafd" Padding="10,10,10,10">
+                                    <Label Text="{Binding CurrentPage}" VerticalOptions="Center"/>
+                                </Border>
+
+                                <Border StrokeThickness="0" Padding="10">
+                                    <Label Text="..." VerticalOptions="Center" TextColor="Black"/>
+                                </Border>
+
+                                <Border StrokeThickness="0" Padding="10">
+                                    <Label Text="{Binding TotalPages}" VerticalOptions="Center" TextColor="Black"/>
+                                </Border>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Padding="2" StrokeShape="RoundRectangle 10">
+                            <HorizontalStackLayout Spacing="15">
+                                <Button Command="{Binding NextPageButtonCommand}" BackgroundColor="White" Text="Trang sau" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </HorizontalStackLayout>
+                </Border>
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+    
+
+</ContentPage>

@@ -10,8 +10,11 @@ namespace QuanLyDaiLy.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotLoading))]
         private bool isLoading = false;
-
         public bool IsNotLoading => !IsLoading;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsNotDeleting))]
+        private bool isDeleting = false;
+        public bool IsNotDeleting => !isDeleting;
 
     }
 }

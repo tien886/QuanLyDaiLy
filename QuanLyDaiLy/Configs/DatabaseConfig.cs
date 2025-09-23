@@ -20,6 +20,7 @@ public class DatabaseConfig
         string relativePath = Path.Combine(appDirectory, @"..\..\..\..\..\Resources\Database");
         string databaseDirectory = Path.GetFullPath(relativePath);
         Directory.CreateDirectory(databaseDirectory); // Ensure the directory exists
+        Debug.WriteLine($"DONE path!!!!!!");
 
         return Path.Combine(databaseDirectory, $"QuanLyDaiLy.db");
     }   

@@ -1,0 +1,122 @@
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLyDaiLy.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QuanLyDaiLy.Helper.DataSeedModule;
+
+class PhieuXuatSeeder
+{
+    public static void SeedPhieuXuat(ModelBuilder modelBuilder)
+    {
+        var seedDate = new DateTime(2023, 1, 1);
+        modelBuilder.Entity<PhieuXuat>().HasData(
+               new PhieuXuat { MaPhieuXuat = 1, MaDaiLy = 1, NgayLap = seedDate.AddDays(-1), TongGiaTri = 100000 },
+            new PhieuXuat { MaPhieuXuat = 2, MaDaiLy = 2, NgayLap = seedDate.AddDays(-2), TongGiaTri = 200000 },
+            new PhieuXuat { MaPhieuXuat = 3, MaDaiLy = 3, NgayLap = seedDate.AddDays(-3), TongGiaTri = 300000 },
+            new PhieuXuat { MaPhieuXuat = 4, MaDaiLy = 4, NgayLap = seedDate.AddDays(-4), TongGiaTri = 400000 },
+            new PhieuXuat { MaPhieuXuat = 5, MaDaiLy = 5, NgayLap = seedDate.AddDays(-5), TongGiaTri = 500000 },
+            new PhieuXuat { MaPhieuXuat = 6, MaDaiLy = 6, NgayLap = seedDate.AddDays(-6), TongGiaTri = 600000 },
+            new PhieuXuat { MaPhieuXuat = 7, MaDaiLy = 7, NgayLap = seedDate.AddDays(-7), TongGiaTri = 700000 },
+            new PhieuXuat { MaPhieuXuat = 8, MaDaiLy = 8, NgayLap = seedDate.AddDays(-8), TongGiaTri = 800000 },
+            new PhieuXuat { MaPhieuXuat = 9, MaDaiLy = 9, NgayLap = seedDate.AddDays(-9), TongGiaTri = 900000 },
+            new PhieuXuat { MaPhieuXuat = 10, MaDaiLy = 10, NgayLap = seedDate.AddDays(-10), TongGiaTri = 1000000 },
+            new PhieuXuat { MaPhieuXuat = 11, MaDaiLy = 11, NgayLap = seedDate.AddDays(-11), TongGiaTri = 1100000 },
+            new PhieuXuat { MaPhieuXuat = 12, MaDaiLy = 12, NgayLap = seedDate.AddDays(-12), TongGiaTri = 1200000 },
+            new PhieuXuat { MaPhieuXuat = 13, MaDaiLy = 13, NgayLap = seedDate.AddDays(-13), TongGiaTri = 1300000 },
+            new PhieuXuat { MaPhieuXuat = 14, MaDaiLy = 14, NgayLap = seedDate.AddDays(-14), TongGiaTri = 1400000 },
+            new PhieuXuat { MaPhieuXuat = 15, MaDaiLy = 15, NgayLap = seedDate.AddDays(-15), TongGiaTri = 1500000 },
+            new PhieuXuat { MaPhieuXuat = 16, MaDaiLy = 16, NgayLap = seedDate.AddDays(-16), TongGiaTri = 1600000 },
+            new PhieuXuat { MaPhieuXuat = 17, MaDaiLy = 17, NgayLap = seedDate.AddDays(-17), TongGiaTri = 1700000 },
+            new PhieuXuat { MaPhieuXuat = 18, MaDaiLy = 18, NgayLap = seedDate.AddDays(-18), TongGiaTri = 1800000 },
+            new PhieuXuat { MaPhieuXuat = 19, MaDaiLy = 19, NgayLap = seedDate.AddDays(-19), TongGiaTri = 1900000 },
+            new PhieuXuat { MaPhieuXuat = 20, MaDaiLy = 20, NgayLap = seedDate.AddDays(-20), TongGiaTri = 2000000 },
+            new PhieuXuat { MaPhieuXuat = 21, MaDaiLy = 21, NgayLap = seedDate.AddDays(-21), TongGiaTri = 2100000 },
+            new PhieuXuat { MaPhieuXuat = 22, MaDaiLy = 22, NgayLap = seedDate.AddDays(-22), TongGiaTri = 2200000 },
+            new PhieuXuat { MaPhieuXuat = 23, MaDaiLy = 23, NgayLap = seedDate.AddDays(-23), TongGiaTri = 2300000 },
+            new PhieuXuat { MaPhieuXuat = 24, MaDaiLy = 24, NgayLap = seedDate.AddDays(-24), TongGiaTri = 2400000 },
+            new PhieuXuat { MaPhieuXuat = 25, MaDaiLy = 25, NgayLap = seedDate.AddDays(-25), TongGiaTri = 2500000 },
+            new PhieuXuat { MaPhieuXuat = 26, MaDaiLy = 26, NgayLap = seedDate.AddDays(-26), TongGiaTri = 2600000 },
+            new PhieuXuat { MaPhieuXuat = 27, MaDaiLy = 27, NgayLap = seedDate.AddDays(-27), TongGiaTri = 2700000 },
+            new PhieuXuat { MaPhieuXuat = 28, MaDaiLy = 28, NgayLap = seedDate.AddDays(-28), TongGiaTri = 2800000 },
+            new PhieuXuat { MaPhieuXuat = 29, MaDaiLy = 29, NgayLap = seedDate.AddDays(-29), TongGiaTri = 2900000 },
+            new PhieuXuat { MaPhieuXuat = 30, MaDaiLy = 30, NgayLap = seedDate.AddDays(-30), TongGiaTri = 3000000 },
+            new PhieuXuat { MaPhieuXuat = 31, MaDaiLy = 31, NgayLap = seedDate.AddDays(-31), TongGiaTri = 3100000 },
+            new PhieuXuat { MaPhieuXuat = 32, MaDaiLy = 32, NgayLap = seedDate.AddDays(-32), TongGiaTri = 3200000 },
+            new PhieuXuat { MaPhieuXuat = 33, MaDaiLy = 33, NgayLap = seedDate.AddDays(-33), TongGiaTri = 3300000 },
+            new PhieuXuat { MaPhieuXuat = 34, MaDaiLy = 34, NgayLap = seedDate.AddDays(-34), TongGiaTri = 3400000 },
+            new PhieuXuat { MaPhieuXuat = 35, MaDaiLy = 35, NgayLap = seedDate.AddDays(-35), TongGiaTri = 3500000 },
+            new PhieuXuat { MaPhieuXuat = 36, MaDaiLy = 36, NgayLap = seedDate.AddDays(-36), TongGiaTri = 3600000 },
+            new PhieuXuat { MaPhieuXuat = 37, MaDaiLy = 37, NgayLap = seedDate.AddDays(-37), TongGiaTri = 3700000 },
+            new PhieuXuat { MaPhieuXuat = 38, MaDaiLy = 38, NgayLap = seedDate.AddDays(-38), TongGiaTri = 3800000 },
+            new PhieuXuat { MaPhieuXuat = 39, MaDaiLy = 39, NgayLap = seedDate.AddDays(-39), TongGiaTri = 3900000 },
+            new PhieuXuat { MaPhieuXuat = 40, MaDaiLy = 40, NgayLap = seedDate.AddDays(-40), TongGiaTri = 4000000 },
+            new PhieuXuat { MaPhieuXuat = 41, MaDaiLy = 41, NgayLap = seedDate.AddDays(-41), TongGiaTri = 4100000 },
+            new PhieuXuat { MaPhieuXuat = 42, MaDaiLy = 42, NgayLap = seedDate.AddDays(-42), TongGiaTri = 4200000 },
+            new PhieuXuat { MaPhieuXuat = 43, MaDaiLy = 43, NgayLap = seedDate.AddDays(-43), TongGiaTri = 4300000 },
+            new PhieuXuat { MaPhieuXuat = 44, MaDaiLy = 44, NgayLap = seedDate.AddDays(-44), TongGiaTri = 4400000 },
+            new PhieuXuat { MaPhieuXuat = 45, MaDaiLy = 45, NgayLap = seedDate.AddDays(-45), TongGiaTri = 4500000 },
+            new PhieuXuat { MaPhieuXuat = 46, MaDaiLy = 46, NgayLap = seedDate.AddDays(-46), TongGiaTri = 4600000 },
+            new PhieuXuat { MaPhieuXuat = 47, MaDaiLy = 47, NgayLap = seedDate.AddDays(-47), TongGiaTri = 4700000 },
+            new PhieuXuat { MaPhieuXuat = 48, MaDaiLy = 48, NgayLap = seedDate.AddDays(-48), TongGiaTri = 4800000 },
+            new PhieuXuat { MaPhieuXuat = 49, MaDaiLy = 49, NgayLap = seedDate.AddDays(-49), TongGiaTri = 4900000 },
+            new PhieuXuat { MaPhieuXuat = 50, MaDaiLy = 50, NgayLap = seedDate.AddDays(-50), TongGiaTri = 5000000 },
+            new PhieuXuat { MaPhieuXuat = 51, MaDaiLy = 1, NgayLap = seedDate.AddDays(-51), TongGiaTri = 5100000 },
+            new PhieuXuat { MaPhieuXuat = 52, MaDaiLy = 2, NgayLap = seedDate.AddDays(-52), TongGiaTri = 5200000 },
+            new PhieuXuat { MaPhieuXuat = 53, MaDaiLy = 3, NgayLap = seedDate.AddDays(-53), TongGiaTri = 5300000 },
+            new PhieuXuat { MaPhieuXuat = 54, MaDaiLy = 4, NgayLap = seedDate.AddDays(-54), TongGiaTri = 5400000 },
+            new PhieuXuat { MaPhieuXuat = 55, MaDaiLy = 5, NgayLap = seedDate.AddDays(-55), TongGiaTri = 5500000 },
+            new PhieuXuat { MaPhieuXuat = 56, MaDaiLy = 6, NgayLap = seedDate.AddDays(-56), TongGiaTri = 5600000 },
+            new PhieuXuat { MaPhieuXuat = 57, MaDaiLy = 7, NgayLap = seedDate.AddDays(-57), TongGiaTri = 5700000 },
+            new PhieuXuat { MaPhieuXuat = 58, MaDaiLy = 8, NgayLap = seedDate.AddDays(-58), TongGiaTri = 5800000 },
+            new PhieuXuat { MaPhieuXuat = 59, MaDaiLy = 9, NgayLap = seedDate.AddDays(-59), TongGiaTri = 5900000 },
+            new PhieuXuat { MaPhieuXuat = 60, MaDaiLy = 10, NgayLap = seedDate.AddDays(-60), TongGiaTri = 6000000 },
+            new PhieuXuat { MaPhieuXuat = 61, MaDaiLy = 11, NgayLap = seedDate.AddDays(-61), TongGiaTri = 6100000 },
+            new PhieuXuat { MaPhieuXuat = 62, MaDaiLy = 12, NgayLap = seedDate.AddDays(-62), TongGiaTri = 6200000 },
+            new PhieuXuat { MaPhieuXuat = 63, MaDaiLy = 13, NgayLap = seedDate.AddDays(-63), TongGiaTri = 6300000 },
+            new PhieuXuat { MaPhieuXuat = 64, MaDaiLy = 14, NgayLap = seedDate.AddDays(-64), TongGiaTri = 6400000 },
+            new PhieuXuat { MaPhieuXuat = 65, MaDaiLy = 15, NgayLap = seedDate.AddDays(-65), TongGiaTri = 6500000 },
+            new PhieuXuat { MaPhieuXuat = 66, MaDaiLy = 16, NgayLap = seedDate.AddDays(-66), TongGiaTri = 6600000 },
+            new PhieuXuat { MaPhieuXuat = 67, MaDaiLy = 17, NgayLap = seedDate.AddDays(-67), TongGiaTri = 6700000 },
+            new PhieuXuat { MaPhieuXuat = 68, MaDaiLy = 18, NgayLap = seedDate.AddDays(-68), TongGiaTri = 6800000 },
+            new PhieuXuat { MaPhieuXuat = 69, MaDaiLy = 19, NgayLap = seedDate.AddDays(-69), TongGiaTri = 6900000 },
+            new PhieuXuat { MaPhieuXuat = 70, MaDaiLy = 20, NgayLap = seedDate.AddDays(-70), TongGiaTri = 7000000 },
+            new PhieuXuat { MaPhieuXuat = 71, MaDaiLy = 21, NgayLap = seedDate.AddDays(-71), TongGiaTri = 7100000 },
+            new PhieuXuat { MaPhieuXuat = 72, MaDaiLy = 22, NgayLap = seedDate.AddDays(-72), TongGiaTri = 7200000 },
+            new PhieuXuat { MaPhieuXuat = 73, MaDaiLy = 23, NgayLap = seedDate.AddDays(-73), TongGiaTri = 7300000 },
+            new PhieuXuat { MaPhieuXuat = 74, MaDaiLy = 24, NgayLap = seedDate.AddDays(-74), TongGiaTri = 7400000 },
+            new PhieuXuat { MaPhieuXuat = 75, MaDaiLy = 25, NgayLap = seedDate.AddDays(-75), TongGiaTri = 7500000 },
+            new PhieuXuat { MaPhieuXuat = 76, MaDaiLy = 26, NgayLap = seedDate.AddDays(-76), TongGiaTri = 7600000 },
+            new PhieuXuat { MaPhieuXuat = 77, MaDaiLy = 27, NgayLap = seedDate.AddDays(-77), TongGiaTri = 7700000 },
+            new PhieuXuat { MaPhieuXuat = 78, MaDaiLy = 28, NgayLap = seedDate.AddDays(-78), TongGiaTri = 7800000 },
+            new PhieuXuat { MaPhieuXuat = 79, MaDaiLy = 29, NgayLap = seedDate.AddDays(-79), TongGiaTri = 7900000 },
+            new PhieuXuat { MaPhieuXuat = 80, MaDaiLy = 30, NgayLap = seedDate.AddDays(-80), TongGiaTri = 8000000 },
+            new PhieuXuat { MaPhieuXuat = 81, MaDaiLy = 31, NgayLap = seedDate.AddDays(-81), TongGiaTri = 8100000 },
+            new PhieuXuat { MaPhieuXuat = 82, MaDaiLy = 32, NgayLap = seedDate.AddDays(-82), TongGiaTri = 8200000 },
+            new PhieuXuat { MaPhieuXuat = 83, MaDaiLy = 33, NgayLap = seedDate.AddDays(-83), TongGiaTri = 8300000 },
+            new PhieuXuat { MaPhieuXuat = 84, MaDaiLy = 34, NgayLap = seedDate.AddDays(-84), TongGiaTri = 8400000 },
+            new PhieuXuat { MaPhieuXuat = 85, MaDaiLy = 35, NgayLap = seedDate.AddDays(-85), TongGiaTri = 8500000 },
+            new PhieuXuat { MaPhieuXuat = 86, MaDaiLy = 36, NgayLap = seedDate.AddDays(-86), TongGiaTri = 8600000 },
+            new PhieuXuat { MaPhieuXuat = 87, MaDaiLy = 37, NgayLap = seedDate.AddDays(-87), TongGiaTri = 8700000 },
+            new PhieuXuat { MaPhieuXuat = 88, MaDaiLy = 38, NgayLap = seedDate.AddDays(-88), TongGiaTri = 8800000 },
+            new PhieuXuat { MaPhieuXuat = 89, MaDaiLy = 39, NgayLap = seedDate.AddDays(-89), TongGiaTri = 8900000 },
+            new PhieuXuat { MaPhieuXuat = 90, MaDaiLy = 40, NgayLap = seedDate.AddDays(-90), TongGiaTri = 9000000 },
+            new PhieuXuat { MaPhieuXuat = 91, MaDaiLy = 41, NgayLap = seedDate.AddDays(-91), TongGiaTri = 9100000 },
+            new PhieuXuat { MaPhieuXuat = 92, MaDaiLy = 42, NgayLap = seedDate.AddDays(-92), TongGiaTri = 9200000 },
+            new PhieuXuat { MaPhieuXuat = 93, MaDaiLy = 43, NgayLap = seedDate.AddDays(-93), TongGiaTri = 9300000 },
+            new PhieuXuat { MaPhieuXuat = 94, MaDaiLy = 44, NgayLap = seedDate.AddDays(-94), TongGiaTri = 9400000 },
+            new PhieuXuat { MaPhieuXuat = 95, MaDaiLy = 45, NgayLap = seedDate.AddDays(-95), TongGiaTri = 9500000 },
+            new PhieuXuat { MaPhieuXuat = 96, MaDaiLy = 46, NgayLap = seedDate.AddDays(-96), TongGiaTri = 9600000 },
+            new PhieuXuat { MaPhieuXuat = 97, MaDaiLy = 47, NgayLap = seedDate.AddDays(-97), TongGiaTri = 9700000 },
+            new PhieuXuat { MaPhieuXuat = 98, MaDaiLy = 48, NgayLap = seedDate.AddDays(-98), TongGiaTri = 9800000 },
+            new PhieuXuat { MaPhieuXuat = 99, MaDaiLy = 49, NgayLap = seedDate.AddDays(-99), TongGiaTri = 9900000 },
+            new PhieuXuat { MaPhieuXuat = 100, MaDaiLy = 50, NgayLap = seedDate.AddDays(-100), TongGiaTri = 10000000 }
+            );
+    }
+}
+
+
+

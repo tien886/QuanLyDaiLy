@@ -33,4 +33,12 @@ public class DaiLyRepository : IDaiLyRepository
         var maxID = await _dataContext.Dailies.MaxAsync(dl => (int?)dl.MaDaiLy) ?? 0;
         return maxID + 1;
     }
+    public async Task<IEnumerable<DaiLy>> GetDailiesPaging(int pageNumber, int pageSize)
+    {
+        return await _dataContext.Dailies
+            .OrderBy(dl => dl.MaDaiLy)
+            .Skip((pageNumber - 1) * pageSize) 
+            .Take(pageSize)
+            .ToListAsync();
+    }
 }

@@ -16,5 +16,8 @@ public class LoaiDaiLyServiceImpl : ILoaiDaiLyService
     {
         return await loaiDaiLyRepository.GetAllLoaiDaiLyAsync();
     }
-
+    public async Task<LoaiDaiLy?> GetLoaiDaiLyByIdAsync(int id)
+    {
+        return await loaiDaiLyRepository.GetLoaiDaiLyByIdAsync(id);
+    }
 }

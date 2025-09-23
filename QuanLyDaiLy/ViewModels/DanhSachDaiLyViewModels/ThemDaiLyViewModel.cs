@@ -112,7 +112,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
                 }
                 catch(Exception ex)
                 {
-                    AlertUtil.ShowAlert("INSERTING DEALER FAILED");
+                    AlertUtil.ShowAlert("INSERTING DEALER FAILED"); 
                 }
                 IsLoading = false;
             }
@@ -120,7 +120,8 @@ public partial class ThemDaiLyViewModel : BaseViewModel
             {
                 AlertUtil.ShowAlert($"SOME THING WENT WRONG WITH DATA ENTRY: {ex}");
             }
-            await Refresh();
+            if (currentPopup != null)
+                _ = currentPopup.CloseAsync();
         }
         
     }

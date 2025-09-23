@@ -2,12 +2,17 @@
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using QuanLyDaiLy.Helper;
 using QuanLyDaiLy.Models;
 using QuanLyDaiLy.Services;
 using QuanLyDaiLy.Utils;
+using QuanLyDaiLy.ViewModels.DanhSachPhieuXuatViewModels;
 using QuanLyDaiLy.Views;
+using QuanLyDaiLy.Views.DanhSachPhieuXuat;
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 
 namespace QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels;
@@ -18,13 +23,21 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
     private readonly IDaiLyService _daiLyService;
     private readonly IServiceProvider _serviceProvider;
     [ObservableProperty]
-    private ObservableCollection<DaiLy> dsDaiLy = []; 
+    private ObservableCollection<DaiLy> dsDaiLy = [];
+    private static bool InitLoad = false;
+    private readonly int pageSize = 20;
+    [ObservableProperty]
+    private int currentPage = 1;
+    [ObservableProperty]
+    private int totalPages;
     public DanhSachDaiLyViewModel(IDaiLyService daiLyService, IServiceProvider serviceProvider)
     {
         this._daiLyService = daiLyService;
-        this._serviceProvider = serviceProvider;
+        this._serviceProvider = serviceProvider;   
         title = "DANH SÁCH ĐẠI LÝ";
         _ = LoadDataAsync();
+        _ = GetTotalPage();
+        Debug.WriteLine(totalPages);
     }
 
     // ButtonCommand Implement
@@ -39,7 +52,7 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
     public async Task AddButton()
     {
         try
-        {
+            {
             // Resolve viewmodel or link the two pages
             var themDaiLyViewModel = _serviceProvider.GetRequiredService<ThemDaiLyViewModel>();
             // Create a popup to add dealer 
@@ -48,9 +61,9 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
             var mainpage = Application.Current?.MainPage;
             if(mainpage != null)
             {
-                await mainpage.ShowPopupAsync(newpopup);
                 IsLoading = true;
-                await LoadDataAsync();
+                await mainpage.ShowPopupAsync(newpopup);
+                _ = LoadDataAsync();
                 IsLoading = false;
             }
         }
@@ -61,17 +74,28 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
 
     }
     [RelayCommand]
+    public async Task ExportButton()
+    {
+        try
+        {
+            await AppShell.Current.GoToAsync(nameof(DanhSachPhieuXuatView));
+        }
+        catch
+        {
+            AlertUtil.ShowAlert("Cannot navigate to Export Page" );
+        }
+    }
+
+    [RelayCommand]
     public async Task LoadButton()
     {
-        IsLoading = true;
         await Task.Yield();
         try
         {
             
             await Task.Run(async () =>
             {
-                var loadList = await _daiLyService.GetAllDaiLyAsync();
-                DsDaiLy = new ObservableCollection<DaiLy>(loadList);
+                await LoadDataAsync();
             });
         }
         catch (Exception ex)
@@ -82,18 +106,51 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
         {
             Debug.WriteLine("Loading stop");
 
-            IsLoading = false;
             await Task.Yield();
         }
         Debug.WriteLine("LoadDataButton on");
+    }
+    [RelayCommand]
+    public async Task NextPageButton()
+    {
+        if (CurrentPage < TotalPages)
+        {
+            CurrentPage++;
+            _ = LoadDataAsync();
+            Debug.WriteLine(CurrentPage);
+
+        }
+    }
+    [RelayCommand]
+    public async Task PreviousPageButton()
+    {
+        if (CurrentPage > 1)
+        {
+            CurrentPage--;
+            _ = LoadDataAsync();
+            Debug.WriteLine(CurrentPage);
+        }
     }
 
     private async Task LoadDataAsync()
     {
         //await Task.Delay(3000);
-        var loadList = await _daiLyService.GetAllDaiLyAsync();
-        DsDaiLy = new ObservableCollection<DaiLy>(loadList);
+        IsLoading = true;
+        var loadList = await _daiLyService.GetDailiesPaging(CurrentPage, pageSize);
+        DsDaiLy = new ObservableCollection<DaiLy>(loadList);    
         Debug.WriteLine("Load data Succesfully");
+        IsLoading = false;
     }
+    // Paging
+
+    private async Task GetTotalPage()
+    {
+        var dailies = await _daiLyService.GetAllDaiLyAsync();
+        var dsDaiLy = new ObservableCollection<DaiLy>(dailies);
+        TotalPages = (int)Math.Ceiling((double)dsDaiLy.Count/pageSize);
+        Debug.WriteLine("TOTAL PAGES: ", TotalPages);
+    }
+
+
 
 }

@@ -68,10 +68,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\DanhSachDaiLyView.xaml">
+	  <MauiXaml Update="Views\DaiLyViews\DanhSachDaiLyView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ThemDaiLyView.xaml">
+	  <MauiXaml Update="Views\DaiLyViews\ThemDaiLyView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PhieuXuatViews\DanhSachPhieuXuatView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PhieuXuatViews\ThemPhieuXuatView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

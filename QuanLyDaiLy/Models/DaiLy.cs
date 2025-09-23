@@ -12,7 +12,7 @@ public class DaiLy
     public string Email { get; set; } = ""; 
     public DateTime NgayTiepNhan { get; set; } = DateTime.Now;
     public string SoDienThoai { get; set; } = "";
-    public double NoDaiLy { get; set; } = 0;
+    public long NoDaiLy { get; set; } = 0;
     // Foreign key
     
     public int MaLoaiDaiLy { get; set; }

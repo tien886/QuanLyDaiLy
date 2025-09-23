@@ -9,5 +9,6 @@
     <ShellContent
         ContentTemplate="{DataTemplate local:DanhSachDaiLyView}"
         Route="MainPage" />
+    
 
 </Shell>

@@ -26,4 +26,8 @@ public class DaiLyServiceImpl : IDaiLyService
     {
         return await daiLyRepository.GetNextAvailableIdAsync();
     }
+    public async Task<IEnumerable<DaiLy>> GetDailiesPaging(int pageNumber, int pageSize)
+    {
+        return await daiLyRepository.GetDailiesPaging(pageNumber, pageSize);
+    }
 }

@@ -19,5 +19,8 @@ public class LoaiDaiLyRepository : ILoaiDaiLyRepository
     {
         return await _dataContext.LoaiDailies.ToListAsync();
     }
-    
+    public async Task<LoaiDaiLy?> GetLoaiDaiLyByIdAsync(int id)
+    {
+        return await _dataContext.LoaiDailies.FindAsync(id);
+    }
 }

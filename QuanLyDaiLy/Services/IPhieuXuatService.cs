@@ -1,13 +1,12 @@
 ﻿
-
 using QuanLyDaiLy.Models;
 
-namespace QuanLyDaiLy.Interfaces;
+namespace QuanLyDaiLy.Services;
 
-public interface IPhieuXuatRepository
+public interface IPhieuXuatService
 {
     Task<int> AddPhieuXuatAsync(PhieuXuat newPhieuXuat);
-    Task<int> GetNextAvailableIDAsync();
+    Task<int> GetNextAvailableIdAsync();
     Task<IEnumerable<PhieuXuat>> GetAllPhieuXuatAsync();
     Task<IEnumerable<PhieuXuat>> GetPhieuXuatsPaging(int pageNumber, int pageSize);
 }

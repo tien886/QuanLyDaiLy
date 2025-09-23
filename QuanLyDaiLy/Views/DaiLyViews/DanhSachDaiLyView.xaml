@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels"
              x:Class="QuanLyDaiLy.Views.DanhSachDaiLyView"
              x:DataType="viewmodels:DanhSachDaiLyViewModel"
-             xmlns:models ="clr-namespace:QuanLyDaiLy.Models"
+             xmlns:models="clr-namespace:QuanLyDaiLy.Models"
              
              >
     <!--Config style-->
@@ -152,7 +152,7 @@
 
                     <HorizontalStackLayout Spacing="10">
                         <HorizontalStackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AbandondedButtonCommand}"/>
+                            <TapGestureRecognizer Command="{Binding ExportButtonCommand}"/>
                         </HorizontalStackLayout.GestureRecognizers>
                         <Label FontFamily="FontAwesomeSolid"
                                 Text="{x:Static models:FontAwesome.Outdent}"
@@ -306,50 +306,32 @@
             <Grid Grid.Row="3" ColumnDefinitions="*, auto">
                 <Border Grid.Column="1" StrokeThickness="0">
                     <HorizontalStackLayout Spacing="20">
-                        <Border Padding="10" StrokeShape="RoundRectangle 10">
-                            <HorizontalStackLayout Spacing="15">
-                                <Label FontFamily="FontAwesomeSolid"
-                                       FontSize="20"
-                                       TextColor="Black"
-                                       Text="{x:Static models:FontAwesome.TentArrowTurnLeft}"
-                                       VerticalOptions="Center"/>
-                                <Label Text="Trang trước" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
-                            </HorizontalStackLayout>
+                        <Border Padding="2" StrokeShape="RoundRectangle 10">
+                            <HorizontalStackLayout Spacing="15" >
+                                <Button Command="{Binding PreviousPageButtonCommand}" BackgroundColor="White" Text="Trang trước" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
+                            </HorizontalStackLayout> 
                         </Border>
 
                         <Border StrokeShape="RoundRectangle 10">
                             <HorizontalStackLayout>
-                                <Border StrokeThickness="0" BackgroundColor="#0eaafd" Padding="10">
-                                    <Label Text="1" VerticalOptions="Center"/>
+                                <Border StrokeThickness="0" BackgroundColor="#0eaafd" Padding="10,10,10,10">
+                                    <Label Text="{Binding CurrentPage}" VerticalOptions="Center"/>
                                 </Border>
 
                                 <Border StrokeThickness="0" Padding="10">
-                                    <Label Text="2" VerticalOptions="Center" TextColor="Black"/>
+                                    <Label Text="..." VerticalOptions="Center" TextColor="Black"/>
                                 </Border>
 
                                 <Border StrokeThickness="0" Padding="10">
-                                    <Label Text="3" VerticalOptions="Center" TextColor="Black"/>
-                                </Border>
-
-                                <Border StrokeThickness="0" Padding="10">
-                                    <Label Text="4" VerticalOptions="Center" TextColor="Black"/>
-                                </Border>
-
-                                <Border StrokeThickness="0" Padding="10">
-                                    <Label Text="5" VerticalOptions="Center" TextColor="Black"/>
+                                    <Label Text="{Binding TotalPages}" VerticalOptions="Center" TextColor="Black"/>
                                 </Border>
                             </HorizontalStackLayout>
                         </Border>
 
-                        <Border Padding="5, 0, 5,0" StrokeShape="RoundRectangle 10">
+                        <Border Padding="2" StrokeShape="RoundRectangle 10">
                             <HorizontalStackLayout Spacing="15">
-                                <Label FontFamily="FontAwesomeSolid"
-                                       FontSize="20"
-                                       TextColor="Black"
-                                       Text="{x:Static models:FontAwesome.DiamondTurnRight}"
-                                       VerticalOptions="Center"/>
-                                <Label Text="Trang sau" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
-                            </HorizontalStackLayout>
+                                <Button Command="{Binding NextPageButtonCommand}" BackgroundColor="White" Text="Trang sau" TextColor="Black" VerticalOptions="Center" FontFamily="MontserratRegular" FontSize="13"/>
+                            </HorizontalStackLayout> 
                         </Border>
                     </HorizontalStackLayout>
                 </Border>

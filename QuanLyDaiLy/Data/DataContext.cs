@@ -49,13 +49,14 @@ public partial class DataContext : DbContext
         modelBuilder.Entity<MatHang>()
             .HasMany(ctpx => ctpx.CTPhieuXuats)
             .WithOne(mh => mh.MatHang)
-            .HasForeignKey(mh => mh.MaMathang)
+            .HasForeignKey(mh => mh.MaMatHang)
             .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<DonViTinh>()
             .HasMany(mh => mh.MatHangs)
             .WithOne(dvt => dvt.DonViTinh)
             .HasForeignKey(dvt => dvt.MaDonViTinh)
             .OnDelete(DeleteBehavior.Cascade);
-        DatabaseSeeder.SeedData(modelBuilder);
+        //if( !(Quans.Any() || Dailies.Any() || LoaiDailies.Any() || ThamSos.Any() || PhieuXuats.Any() || CTPhieuXuats.Any() || DonViTinhs.Any() || MatHangs.Any() ))
+            DatabaseSeeder.SeedData(modelBuilder);
     }
 }

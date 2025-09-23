@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:QuanLyDaiLy.ViewModels.DanhSachPhieuXuatViewModels"
+             xmlns:models ="clr-namespace:QuanLyDaiLy.Models"   
+             xmlns:dto="clr-namespace:QuanLyDaiLy.Models.DTO"
+             x:Class="QuanLyDaiLy.Views.PhieuXuatViews.ThemPhieuXuatView"
+             x:DataType="viewmodels:ThemPhieuXuatViewModel"
+             Size="900,550"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="Transparent"
+            CanBeDismissedByTappingOutsideOfPopup="False"
+               >
+   <Border
+    BackgroundColor="White"
+    HeightRequest="550"
+    HorizontalOptions="Center"
+    Stroke="LightGray"
+    StrokeThickness="2"
+    VerticalOptions="Center"
+    WidthRequest="900"
+    >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="11" />
+        </Border.StrokeShape>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="408" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row="1" Color="LightGray" />
+            <BoxView Grid.Row="3" Color="LightGray" />
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                Text="Lập phiếu xuất hàng"
+                Grid.Column="0"
+                Margin="20,0,0,0"
+                FontAttributes="Bold"
+                FontSize="18"
+                VerticalOptions="Center" />
+
+                <Button
+                Grid.Column="1"
+                Command="{Binding ExitButtonCommand}"   
+                Margin="0,0,20,0"
+                BackgroundColor="Red"
+                FontSize="16"
+                HeightRequest="40"
+                Text="✕"
+                FontAttributes="Bold"
+                TextColor="White"
+                VerticalOptions="Center"
+                WidthRequest="40" />
+                
+            </Grid>
+            <Border Grid.Row="2" Margin="5" BackgroundColor="#f6f9ff" StrokeShape="RoundRectangle 10,10" >
+                <Grid Margin="20,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="255" />
+                    </Grid.RowDefinitions>
+                    <ScrollView Grid.Row="0">
+                        <Grid >
+                            <Grid
+                            Grid.Row="0"
+                            Margin="0,10"
+                            ColumnSpacing="15"
+                            RowSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="Mã phiếu xuất" FontAttributes="Bold"></Label>
+                                    <Entry
+                        Text="{Binding MaPhieuXuat}"
+                        BackgroundColor="DarkGray"
+                        IsReadOnly="True"
+                        ></Entry>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label Text="Tên đại lý" FontAttributes="Bold"></Label>
+                                    <Picker
+                        ItemsSource="{Binding DaiLies}"
+                        SelectedItem="{Binding SelectedDaiLy}"
+                        ItemDisplayBinding="{Binding Ten}"
+                        BackgroundColor="LightGray"
+                        >
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                    <Label Text="Nợ đại lý" FontAttributes="Bold"></Label>
+                                    <Entry
+                        Text="{Binding SelectedDaiLy.NoDaiLy}"
+                        Background="DarkGray"
+                        IsReadOnly="True"
+                        >
+                                    </Entry>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="3" Spacing="5" >
+                                    <Label Text="Nợ tối đa" FontAttributes="Bold"></Label>
+                                    <Entry
+                        Text="{Binding SelectedDaiLy.LoaiDaiLy.NoToiDa}"
+                        Background="DarkGray"
+                        IsReadOnly="True"
+                        >
+                                    </Entry>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="4" Spacing="5" >
+                                    <Label Text="Ngày tiếp nhận" FontAttributes="Bold"></Label>
+                                    <DatePicker
+                        HorizontalOptions="Start"
+                        BackgroundColor="LightGray" 
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        Format="dd/MM/yyyy"
+                        >
+                                    </DatePicker>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="5" Spacing="5" >
+                                    <Label Text="Tổng tiền" FontAttributes="Bold"></Label>
+                                    <Entry
+                        Background="DarkGray"
+                        IsReadOnly="True"
+                        Text="{Binding TongTien}"
+>
+                                    </Entry>
+                                </VerticalStackLayout>
+                                    </Grid>
+                            </Grid>
+                        </ScrollView>
+                      <Border Grid.Row="1" StrokeShape="RoundRectangle 10,10" >
+                            <Grid 
+                                    ColumnSpacing="15"
+                                    BackgroundColor="White"
+                                    RowSpacing="10"
+                                    Padding="10,10,10,0"
+                                    >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" IsVisible="{Binding IsDeleting}">
+                                    <Label Text="XÓA" VerticalOptions="Start"></Label>
+                                </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                                        <Label Text="STT"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                                        <Label Text="TÊN MẶT HÀNG"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
+                                        <Label Text="ĐƠN VỊ TÍNH"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center">
+                                        <Label Text="SL TỒN"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="5" HorizontalOptions="Center">
+                                        <Label Text="SL XUẤT"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="6" HorizontalOptions="Center">
+                                        <Label Text="ĐƠN GIÁ"></Label>
+                                    </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="7" HorizontalOptions="Center">
+                                        <Label Text="THÀNH TIỀN"></Label>
+                                    </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    <Border Grid.Row="2" StrokeShape="RoundRectangle 10,10" >
+                    <CollectionView ItemsSource="{Binding SelectedCTPhieuXuats}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="dto:CTPhieuXuatDTO">
+                            <Grid 
+                                ColumnSpacing="15"
+                                BackgroundColor="White"
+                                RowSpacing="10"
+                                Padding="10,10,10,0"
+                                >
+                                
+                                            <Grid Padding="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30" />
+                                                    <ColumnDefinition Width="30" />
+                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" IsVisible="{Binding Source={RelativeSource AncestorType={x:Type toolkit:Popup}}, Path=BindingContext.IsDeleting}" IsChecked="{Binding IsSelected}" VerticalOptions="Start" ></CheckBox>
+                                            <Label Grid.Column="1" Text="{Binding STT}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Picker Grid.Column="2" 
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center"
+                                                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type toolkit:Popup}}, Path=BindingContext.MatHangs}"
+                                                        SelectedItem="{Binding SelectedMatHang}"
+                                                        ItemDisplayBinding="{Binding TenMatHang}"
+                                                        BackgroundColor="LightGray"
+                                                    WidthRequest="200"
+                                                        />
+                                            <Label Grid.Column="3" Text="{Binding DonViTinh}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                            <Label Grid.Column="4" Text="{Binding SoLuongTon}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                            <Entry Grid.Column="5" BackgroundColor="LightGray" Keyboard="Numeric" Text="{Binding SoLuongXuat, Mode=TwoWay}"/>
+                                            <Entry Grid.Column="6" BackgroundColor="LightGray" Keyboard="Numeric" Text="{Binding DonGia, Mode=TwoWay}"/>
+                                            <Label Grid.Column="7" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding ThanhTien}"/>
+                                            </Grid>
+                                </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Border>
+                </Grid> 
+                
+            </Border>
+            
+            <HorizontalStackLayout
+            Grid.Row="4"
+            HorizontalOptions="Center"
+            Spacing="15"
+            VerticalOptions="Center">
+                <Button
+                BackgroundColor="Green"
+                Text="Lưu"
+                Command="{Binding SaveMatHangButtonCommand}"
+                IsEnabled="{Binding IsNotDeleting}"
+                TextColor="White"
+                WidthRequest="60"
+                 />
+                <Button
+                BackgroundColor="Green"
+                Text="Thêm mặt hàng"
+                Command="{Binding AddMatHangButtonCommand}"
+                IsEnabled="{Binding IsNotDeleting}"
+                TextColor="White"
+                WidthRequest="150"
+                 />
+                <Button
+                BackgroundColor="Green"
+                Text="Lập phiếu xuất"
+                TextColor="White"
+                Command="{Binding AddPhieuXuatCommand}"
+                IsEnabled="{Binding IsNotDeleting}"
+                WidthRequest="150"
+                 />
+                <Button
+                BackgroundColor="DarkBlue"
+                Text="{Binding EditSelectedMatHang}"
+                Command="{Binding EditMatHangCommand}"
+                TextColor="White"
+                WidthRequest="150"
+                 />
+                <Button
+                BackgroundColor="Red"
+                Text="🚪 Thoát"
+                Command="{Binding ExitButtonCommand}"   
+                TextColor="White"
+                WidthRequest="150"
+                 />
+                <Button
+                BackgroundColor="Red"
+                Text="Xóa mặt hàng"
+                Command="{Binding DeleteMatHangCommand}"   
+                IsVisible="{Binding IsDeleting}"
+                TextColor="White"
+                WidthRequest="150"
+                />
+            </HorizontalStackLayout>
+        </Grid>
+    </Border> 
+
+        
+
+</toolkit:Popup>
