@@ -94,6 +94,7 @@ public partial class ThemDaiLyViewModel : BaseViewModel
             IsLoading = true;
             try
             {
+                Debug.WriteLine(NgayTiepNhan);
                 var newDaiLy = new DaiLy
                 {
                     MaDaiLy = MaDaiLy,

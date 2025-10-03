@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup 
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            xmlns:viewmodels ="clr-namespace:QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels"
+            xmlns:models ="clr-namespace:QuanLyDaiLy.Models"
+            x:Class="QuanLyDaiLy.Views.DaiLyViews.TraCuuDaiLyView"
+            x:DataType="viewmodels:TraCuuDaiLyViewModel"
+            CanBeDismissedByTappingOutsideOfPopup="False"
+            Size="1100,700"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="Transparent"
+            
+               >
+    <Border
+    BackgroundColor="White" 
+    HeightRequest="700"
+    HorizontalOptions="Center"
+    Stroke="LightGray"
+    StrokeThickness="2"
+    VerticalOptions="Center"
+    WidthRequest="1100"
+    >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="11" />
+        </Border.StrokeShape>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="418" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row="1" Color="LightGray" />
+            <BoxView Grid.Row="3" Color="LightGray" />
+            <!--HEADER-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                Grid.Column="0"
+                Margin="20,0,0,0"
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="Tra cứu đại lý"
+                VerticalOptions="Center" />
+
+                <Button
+                Grid.Column="1"
+                Margin="0,0,20,0"
+                BackgroundColor="Red"
+                Command="{Binding CloseButtonCommand}"
+                FontSize="16"
+                HeightRequest="40"
+                Text="✕"
+                FontAttributes="Bold"
+                TextColor="White"
+                VerticalOptions="Center"
+                WidthRequest="40" />
+                
+            </Grid>
+            <Border Grid.Row="2" BackgroundColor="#f6f9ff" Padding="10" Margin="5" >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="11" />
+                </Border.StrokeShape>
+                <Grid RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="228" />
+                        <RowDefinition Height="80" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" ColumnSpacing="10" Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <VerticalStackLayout Grid.Column="0" >
+                            <Label Text="Mã đại lý" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Entry Placeholder="Có chứa" BackgroundColor="White" Text="{Binding MaDaiLy}"></Entry>   
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" >
+                            <Label Text="Tên đại lý" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Entry Placeholder="Có chứa" BackgroundColor="White" Text="{Binding TenDaiLy}" ></Entry>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2" >
+                            <Label Text="Điện thoại" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Entry Placeholder="Có chứa" BackgroundColor="White" Text="{Binding SoDienThoai}"></Entry>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="3" >
+                            <Label Text="Địa chỉ" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Entry Placeholder="Có chứa" BackgroundColor="White" Text="{Binding DiaChi}"></Entry>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="4" >
+                            <Label Text="Email" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Entry Placeholder="Có chứa" BackgroundColor="White" Text="{Binding Email}"></Entry>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="5" >
+                            <Label Text="Tên loại đại lý" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Picker BackgroundColor='DarkGray'
+                                        ItemsSource="{Binding LoaiDailies}"
+                                        SelectedItem="{Binding SelectedLoaiDaiLy}"
+                                        ItemDisplayBinding="{Binding TenLoaiDaiLy}"
+                                        ></Picker>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="6" >
+                            <Label Text="Tên quận" ></Label>
+                            <Border StrokeShape="RoundRectangle 11">
+                                <Picker BackgroundColor='DarkGray'
+                                        ItemsSource="{Binding Quans}"
+                                        SelectedItem="{Binding SelectedQuans}"
+                                        ItemDisplayBinding="{Binding TenQuan}"
+                                        ></Picker>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <!--Menu-->
+                    <Grid Grid.Row="1" RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--right pane-->
+                        <Grid Grid.Column="0" RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <HorizontalStackLayout Grid.Row="0"  >
+                                <Label Text="Ngày tiếp nhận" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <DatePicker
+                                        Date="{Binding NgayTiepNhanBegin}"
+                                        Background="LightGray"
+                                        Format="dd/MM/yyyy"
+                                        HorizontalOptions="Start" 
+                                        WidthRequest="150" />
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <DatePicker
+                                        Date="{Binding NgayTiepNhanEnd}"
+                                        Background="LightGray"
+                                        Format="dd/MM/yyyy"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="150" />
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="1"  >
+                                <Label Text="Nợ tối đa theo loại đại lý" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="150" Background="LightGray" Text="{Binding NoToiDaBegin}"></Entry>
+                                </Border>
+                                <Label Text="đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="150" Background="LightGray" Text="{Binding NoToiDaEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="2">
+                                <Label Text="Ngày lập phiếu xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <DatePicker
+                                    Date="{Binding NgayLapPhieuXuatBegin}"
+                                    Background="LightGray"
+                                    Format="dd/MM/yyyy"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="150" />
+                                </Border>
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <DatePicker
+                                    Date="{Binding NgayLapPhieuXuatEnd}"
+                                    Background="LightGray"
+                                    Format="dd/MM/yyyy"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="150" />
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="3">
+                                <Label Text="Tên mặt hàng" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Picker BackgroundColor='DarkGray'
+                                    ItemsSource="{Binding MatHangs}"
+                                    SelectedItem="{Binding SelectedMatHang}"
+                                    ItemDisplayBinding="{Binding TenMatHang}"
+                                    ></Picker>
+                                </Border >
+                                <Label Text="Tên đơn vị tính" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Label WidthRequest="150" Background="LightGray" Text="{Binding TenDonViTinh}"></Label>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="4">
+                                <Label Text="Số lượng xuất của mặt hàng xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding SoLuongXuatBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding SoLuongXuatEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="5">
+                                <Label Text="Thành tiền của mặt hàng xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding ThanhTienBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding ThanhTienEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <!--left pane-->
+                        <Grid Grid.Column="1" RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <HorizontalStackLayout Grid.Row="0"  >
+                                <Label Text="Nợ đại lý" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding NoDaiLyBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding NoDaiLyEnd}"></Entry>
+
+                                </Border >
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="1"  >
+                                <Label Text="Mã phiếu xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="150" Background="LightGray" Text="{Binding MaPhieuXuatBegin}"></Entry>
+                                </Border>
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="150" Background="LightGray" Text="{Binding MaPhieuXuatEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="2">
+                                <Label Text="Tổng giá trị phiếu xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding TongGiaTriPXBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding TongGiaTriPXEnd}"></Entry>
+
+                                </Border >
+                            </HorizontalStackLayout>
+                            
+                            <HorizontalStackLayout Grid.Row="4">
+                                <Label Text="Đơn giá xuất của mặt hàng xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding DonGiaXuatBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding DonGiaXuatEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="5">
+                                <Label Text="Số lượng tồn của mặt hàng xuất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Label Text=" từ " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding SoLuongTonBegin}"></Entry>
+
+                                </Border >
+                                <Label Text=" đến " TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                <Border StrokeShape="RoundRectangle 11" Margin="5,0,5,0">
+                                    <Entry WidthRequest="120" Background="LightGray" Text="{Binding SoLuongTonEnd}"></Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" >
+                        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Button Command="{Binding LookUpDaiLyCommand}" BackgroundColor="Green" WidthRequest="150" HeightRequest="30" Text="Tra cứu đại lý" Margin="10"></Button>
+                            <Button Command ="{Binding CloseButtonCommand}" BackgroundColor="Red" WidthRequest="70" HeightRequest="30" Text="Thoát"></Button>
+                        </HorizontalStackLayout>
+                    </Grid>
+                 
+                </Grid>
+            </Border>
+            <!--Looked up DaiLy-->
+            <Border StrokeShape="RoundRectangle 11" Grid.Row="4" Padding="10" Margin="5" BackgroundColor="#f6f9ff">
+             
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="MÃ ĐẠI LÝ" HorizontalOptions="Center"></Label>
+                    <Label Grid.Column="1" Text="TÊN ĐẠI LÝ"></Label>
+                    <Label Grid.Column="2" Text="ĐIỆN THOẠI"></Label>
+                    <Label Grid.Column="3" Text="ĐỊA CHỈ"></Label>
+                    <Label Grid.Column="4" Text="EMAIL"></Label>
+                    <Label Grid.Column="5" Text="NGÀY TIẾP NHẬN"></Label>
+                    <Label Grid.Column="6" Text="NỢ CỦA ĐẠI LÝ"></Label>
+                    <Label Grid.Column="7" Text="TÊN LOẠI ĐẠI LÝ"></Label>
+                    <Label Grid.Column="8" Text="TÊN QUẬN"></Label>
+                </Grid>
+
+                    <Border Grid.Row="4"
+                            StrokeShape="RoundRectangle 11"
+                            Padding="10"
+                            Margin="5"
+                            BackgroundColor="#f6f9ff">
+
+                        <ScrollView>
+                            <CollectionView
+                            ItemsSource="{Binding FoundDailies}" 
+                            HeightRequest="180">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:DaiLy" >
+                                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*" Padding="5" Margin="10" >
+                                                
+                                                <Label Text="{Binding MaDaiLy}" Grid.Column="0" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Ten}" Grid.Column="1" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding SoDienThoai}" Grid.Column="2" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding DiaChi}" Grid.Column="3" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Email}" Grid.Column="4" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding NgayTiepNhan, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="5" HorizontalOptions="Center"/>
+                                                <Label Text="{Binding NoDaiLy}" Grid.Column="6" HorizontalOptions="Center"/>
+                                                <Label Text="{Binding LoaiDaiLy.TenLoaiDaiLy}" Grid.Column="7" HorizontalOptions="Center"/>
+                                                <Label Text="{Binding Quan.TenQuan}" Grid.Column="8" HorizontalOptions="Center"/>
+                                            </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+                        </ScrollView>
+
+                    </Border>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</toolkit:Popup>

@@ -26,6 +26,8 @@ public class DaiLyRepository : IDaiLyRepository
         return await _dataContext.Dailies
             .Include(dl => dl.Quan)
             .Include(dl => dl.LoaiDaiLy)
+            .Include(dl => dl.PhieuXuats)
+                .ThenInclude(px => px.CTPhieuXuats)
             .ToListAsync();
     }
     public async Task<int> GetNextAvailableIdAsync()

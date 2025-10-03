@@ -10,6 +10,7 @@ using QuanLyDaiLy.Services;
 using QuanLyDaiLy.ViewModels.DanhSachDaiLyViewModels;
 using QuanLyDaiLy.ViewModels.DanhSachPhieuXuatViewModels;
 using QuanLyDaiLy.Views;
+using QuanLyDaiLy.Views.DaiLyViews;
 using QuanLyDaiLy.Views.DanhSachPhieuXuat;
 using QuanLyDaiLy.Views.PhieuXuatViews;
 using System.Diagnostics;
@@ -52,11 +53,13 @@ public static class AppModule
         services.AddTransient<ThemDaiLyView>();
         services.AddTransient<DanhSachPhieuXuatView>();
         services.AddTransient<ThemPhieuXuatView>();
+        services.AddTransient<TraCuuDaiLyView>();
         // ViewModels Register
         services.AddTransient<DanhSachDaiLyViewModel>();
         services.AddTransient<ThemDaiLyViewModel>();
         services.AddTransient<DanhSachPhieuXuatViewModel>();
         services.AddTransient<ThemPhieuXuatViewModel>();
+        services.AddTransient<TraCuuDaiLyViewModel>();
         // Partitioner Register
         services.AddScoped<DanhSachDaiLyPartitioner>();
         return services;

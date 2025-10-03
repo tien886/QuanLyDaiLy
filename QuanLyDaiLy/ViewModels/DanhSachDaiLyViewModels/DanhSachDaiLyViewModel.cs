@@ -8,6 +8,7 @@ using QuanLyDaiLy.Services;
 using QuanLyDaiLy.Utils;
 using QuanLyDaiLy.ViewModels.DanhSachPhieuXuatViewModels;
 using QuanLyDaiLy.Views;
+using QuanLyDaiLy.Views.DaiLyViews;
 using QuanLyDaiLy.Views.DanhSachPhieuXuat;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
@@ -151,6 +152,26 @@ public partial class DanhSachDaiLyViewModel : BaseViewModel
         Debug.WriteLine("TOTAL PAGES: ", TotalPages);
     }
 
+    [RelayCommand]
+    private async Task LookUpButton()
+    {
+        try
+        {
+            var traCuuDaiLyViewModel = _serviceProvider.GetRequiredService<TraCuuDaiLyViewModel>();
+            var newpopup = new TraCuuDaiLyView(traCuuDaiLyViewModel);
+            var mainpage = Application.Current?.MainPage;
+            if (mainpage != null)
+            {
+                IsLoading = true;
+                await mainpage.ShowPopupAsync(newpopup);
+                IsLoading = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await AlertUtil.ShowAlert($"Error opening lookup dealer popup: {ex.Message}");
+        }
+    }
 
 
 }

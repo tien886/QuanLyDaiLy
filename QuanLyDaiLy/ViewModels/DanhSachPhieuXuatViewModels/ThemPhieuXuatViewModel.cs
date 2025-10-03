@@ -105,19 +105,19 @@ public partial class ThemPhieuXuatViewModel : BaseViewModel
     {
         if(selectedDaiLy == null)
         {
-            AlertUtil.ShowAlert("CHOOSE A DAILY");
+            await AlertUtil.ShowAlert("CHOOSE A DAILY");
             return;
         }
         if(selectedCTPhieuXuats.Count == 0 || selectedCTPhieuXuats[0].SelectedMatHang == null )
         {
-            AlertUtil.ShowFailed("FAILED TO EXPORT");
+            await AlertUtil.ShowFailed("FAILED TO EXPORT");
             return;
         }
         foreach(var item in selectedCTPhieuXuats)
         {
             if(item.SelectedMatHang == null || item.SoLuongXuat == "0")
             {
-                AlertUtil.ShowFailed("FAILED TO EXPORT");
+                await AlertUtil.ShowFailed("FAILED TO EXPORT");
                 return;
             }
         }
@@ -132,20 +132,29 @@ public partial class ThemPhieuXuatViewModel : BaseViewModel
         await _phieuXuatService.AddPhieuXuatAsync(phieuXuat);
         foreach(var item in selectedCTPhieuXuats)
         {
-            var newCTPhieuXuat = new CTPhieuXuat
+            try
             {
-                MaCTPhieuXuat = await _ctPhieuXuatService.GetNextCTPhieuXuatAvailableIdAsync(),
-                MaMatHang = item.SelectedMatHang.MaMatHang,
-                MaPhieuXuat = MaPhieuXuat,
-                SoLuongXuat = int.Parse(item.SoLuongXuat),
-                DonGiaXuat = int.Parse(item.DonGia),
-                ThanhTien = item.ThanhTien
-            };
-            // Update the MatHang stock
-            var matHangToUpdate = await _matHangService.GetMatHangByID(item.SelectedMatHang.MaMatHang);
-            matHangToUpdate.SoLuongTon -= newCTPhieuXuat.SoLuongXuat;
-            await _matHangService.UpdateMatHang(matHangToUpdate);
-            await _ctPhieuXuatService.AddCTPhieuXuatAsync(newCTPhieuXuat);
+                var newCTPhieuXuat = new CTPhieuXuat
+                {
+                    MaCTPhieuXuat = await _ctPhieuXuatService.GetNextCTPhieuXuatAvailableIdAsync(),
+                    MaMatHang = item.SelectedMatHang.MaMatHang,
+                    MaPhieuXuat = MaPhieuXuat,
+                    SoLuongXuat = int.Parse(item.SoLuongXuat),
+                    DonGiaXuat = int.Parse(item.DonGia),
+                    ThanhTien = item.ThanhTien
+                };
+                // Update the MatHang stock
+                var matHangToUpdate = await _matHangService.GetMatHangByID(item.SelectedMatHang.MaMatHang);
+                matHangToUpdate.SoLuongTon -= newCTPhieuXuat.SoLuongXuat;
+                await _matHangService.UpdateMatHang(matHangToUpdate);
+                await _ctPhieuXuatService.AddCTPhieuXuatAsync(newCTPhieuXuat);
+
+            }
+            catch(Exception ex)
+            {
+                AlertUtil.ShowFailed("FAILED TO EXPORT");
+                return;
+            }
 
         }
         if (currentPopup != null)

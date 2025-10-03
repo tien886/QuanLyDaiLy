@@ -22,5 +22,6 @@ public class DaiLy
     public virtual Quan Quan { get; set; } = null!;
     // Let the db know Quan is PK of Quan table and MaQuan is FK
     public virtual List<PhieuXuat> PhieuXuats { get; set; } = [];
+
 }
 
